@@ -111,7 +111,7 @@ resource "aws_route_table_association" "subnet1assoc" {
   
 }
 
-
+/*
 #  nat gateway
 
 #  nat gateway
@@ -198,3 +198,4 @@ resource "aws_security_group" "my_sg" {
 
 
 
+*/
