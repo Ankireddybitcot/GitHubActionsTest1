@@ -111,7 +111,7 @@ resource "aws_route_table_association" "subnet1assoc" {
   
 }
 
-/*
+
 #  nat gateway
 
 #  nat gateway
@@ -135,7 +135,7 @@ resource "aws_eip" "eip" {
   }
 }
 
-
+/*
 #private _route_tables
 
 resource "aws_route_table" "privatecrt" {
