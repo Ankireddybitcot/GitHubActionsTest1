@@ -107,7 +107,7 @@ resource "aws_route_table" "publicrt" {
 resource "aws_route_table_association" "subnet1assoc" {
     count = length(var.public_subnets_cidr)
     subnet_id       = element(aws_subnet.public.*.id, count.index)
-    route_table_id  = "${aws_route_table.publicrt.id}"
+    route_table_id  = aws_route_table.publicrt.id
   
 }
 
@@ -117,8 +117,8 @@ resource "aws_route_table_association" "subnet1assoc" {
 #  nat gateway
 
 resource "aws_nat_gateway" "nat" {
-  subnet_id     = "${element(aws_subnet.private.*.id, count.index)}"
-  allocation_id = "${aws_eip.eip.id}"
+  subnet_id     = element(aws_subnet.private.*.id, count.index)
+  allocation_id = aws_eip.eip.id
 
   tags = {
     Name = "${var.stack}-nat_gateway"
