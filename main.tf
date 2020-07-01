@@ -32,12 +32,13 @@ module "bootstrap" {
 
 # Build the VPC
 resource "aws_vpc" "myvpc" {
-    cidr_block = "${var.VPC}"
+    cidr_block = "var.VPC"
 
     tags = {
-        Name = "${var.stack}-vpc"
+        Name = "aaaavpc"
     }
 }
+/*
 resource "aws_subnet" "public" {
     count = "${length(var.public_subnets_cidr)}"
     cidr_block = "${element(var.public_subnets_cidr,count.index)}"
@@ -189,3 +190,4 @@ resource "aws_security_group" "my_sg" {
 
 
 
+*/
