@@ -32,7 +32,7 @@ module "bootstrap" {
 
 
 
-
+/*
 # Build the VPC
 resource "aws_vpc" "myvpc" {
     cidr_block = var.VPC
