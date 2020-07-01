@@ -9,6 +9,12 @@ variable "public_subnets_cidr" {
     default = ["10.0.1.0/24","10.0.3.0/24"]
 
 }
+variable "azs" {
+    type = list
+   # description = "Enter Availability_zone type as list (eg : [us-west-2a,us-west-2b])"
+   default = ["us-west-2a","us-west-2b"]
+  
+}
 variable stack {
   #description = "Enter name for tags"
   default = "anki"
