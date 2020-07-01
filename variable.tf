@@ -19,7 +19,7 @@ variable "region" {
 variable "name" {
     type = "string"
     #description = "Enter name of your account"  
-    default = "anki"
+    default = "anki2"
 }
 variable "threshold" {
     type = "string"
