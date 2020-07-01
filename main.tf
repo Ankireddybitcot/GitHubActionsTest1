@@ -2,7 +2,7 @@
 terraform {
   required_version = ">=0.12.13"
   backend "s3" {
-    bucket         = "anki2-kyler-github-actions-demo-terraform-tfstate"
+    bucket         = "anki-kyler-github-actions-demo-terraform-tfstate"
     key            = "terraform.tfstate"
     region         = "us-west-2"
     #dynamodb_table = "aws-locks"
@@ -22,7 +22,7 @@ provider "aws" {
 # Call the seed_module to build our ADO seed info
 module "bootstrap" {
   source                      = "./modules/bootstrap"
-  name_of_s3_bucket           = "anki2-kyler-github-actions-demo-terraform-tfstate"
+  name_of_s3_bucket           = "anki-kyler-github-actions-demo-terraform-tfstate"
   dynamo_db_table_name        = "aws-locks"
   iam_user_name               = "GitHubActionsIamUser"
   ado_iam_role_name           = "GitHubActionsIamRole"
