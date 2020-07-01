@@ -32,7 +32,7 @@ module "bootstrap" {
 
 
 
-/*
+
 # Build the VPC
 resource "aws_vpc" "myvpc" {
     cidr_block = var.VPC
@@ -41,6 +41,7 @@ resource "aws_vpc" "myvpc" {
         Name = "aaaavpc"
     }
 }
+/*
 
 resource "aws_subnet" "public" {
     count = length(var.public_subnets_cidr)
