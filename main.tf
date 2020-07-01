@@ -115,7 +115,7 @@ resource "aws_route_table_association" "subnet1assoc" {
 #  nat gateway
 
 #  nat gateway
-
+/*
 resource "aws_nat_gateway" "nat" {
   subnet_id     = element(aws_subnet.private.*.id, count.index)
   allocation_id = aws_eip.eip.id
