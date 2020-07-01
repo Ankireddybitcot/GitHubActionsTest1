@@ -41,13 +41,13 @@ resource "aws_vpc" "myvpc" {
         Name = "aaaavpc"
     }
 }
-/*
-resource "aws_subnet" "public" {
-    count = "${length(var.public_subnets_cidr)}"
-    cidr_block = "${element(var.public_subnets_cidr,count.index)}"
 
-    vpc_id = "${aws_vpc.myvpc.id}"
-    availability_zone = "${element(var.azs,count.index)}"
+resource "aws_subnet" "public" {
+    count = length(var.public_subnets_cidr)
+    cidr_block = element(var.public_subnets_cidr,count.index)
+
+    vpc_id = aws_vpc.myvpc.id
+    availability_zone = element(var.azs,count.index)
 
 
     tags = {
@@ -56,7 +56,7 @@ resource "aws_subnet" "public" {
   
 }
 
-
+/*
 #privatesubnets
 
 
