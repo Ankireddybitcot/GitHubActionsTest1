@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 
- Commented out until after bootstrap
+# Commented out until after bootstrap
 
 # Call the seed_module to build our ADO seed info
 module "bootstrap" {
