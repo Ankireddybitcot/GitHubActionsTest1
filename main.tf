@@ -105,22 +105,26 @@ resource "aws_route_table" "publicrt" {
 
 #public_rt_subnets_assosiation
 resource "aws_route_table_association" "subnet1assoc" {
-    count = length(var.public_subnets_cidr)
-    subnet_id       = element(aws_subnet.public.*.id, count.index)
-    route_table_id  = aws_route_table.publicrt.id
+    count = "${length(var.public_subnets_cidr)}"
+    subnet_id       = "${element(aws_subnet.public.*.id, count.index)}"
+    route_table_id  = "${aws_route_table.publicrt.id}"
   
 }
+
+
+#  nat gateway
 
 #  nat gateway
 
 resource "aws_nat_gateway" "nat" {
-  subnet_id     = element(aws_subnet.private.*.id, count.index)
-  allocation_id = aws_eip.eip.id
+  subnet_id     = "${element(aws_subnet.private.*.id, count.index)}"
+  allocation_id = "${aws_eip.eip.id}"
 
   tags = {
     Name = "${var.stack}-nat_gateway"
   }
 }
+
 
 resource "aws_eip" "eip" {
 
@@ -150,11 +154,12 @@ resource "aws_route_table" "privatecrt" {
 
 #private_rt_subnets_assosiation
 resource "aws_route_table_association" "privatesubnet1assoc" {
-    count = length(var.private_subnets_cidr)
-    subnet_id       = element(aws_subnet.private.*.id, count.index)
-    route_table_id  = aws_route_table.privatecrt.id
+    count = "${length(var.private_subnets_cidr)}"
+    subnet_id       = "${element(aws_subnet.private.*.id, count.index)}"
+    route_table_id  = "${aws_route_table.privatecrt.id}"
   
 }
+
 
 
 resource "aws_security_group" "my_sg" {
