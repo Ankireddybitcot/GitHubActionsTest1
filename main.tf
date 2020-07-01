@@ -5,7 +5,7 @@ terraform {
     bucket         = "anki-kyler-github-actions-demo-terraform-tfstate"
     key            = "terraform.tfstate"
     region         = "us-west-2"
-    dynamodb_table = "aws-locks"
+    #dynamodb_table = "aws-locks"
     encrypt        = true
   }
 }
@@ -41,23 +41,5 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-# Build route table 1
-resource "aws_route_table" "route_table1" {
-  vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name = "RouteTable1"
-    Terraform = "true"
-  }
-}
-
-# Build route table 2 dccedfef
-resource "aws_route_table" "route_table2" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name = "RouteTable2"
-    Terraform = "true"
-  }
-}
 
