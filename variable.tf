@@ -1,21 +1,3 @@
-
-/*
-variable "accesskey" {
-    type = "string"
-    default = "AKIAWBEP2BYJSWMCCME6"
-}
-
-variable "secretkey" {
-   type = "string"
-   default ="LlfHPILHlVbk7dQ59Wq9Ye0HZ9vdvR62KRf3+OX1"
-}
-
-variable "region" {
-    type = "string"
-    default = "us-west-2"
-}
-*/
-
 variable "name" {
     type = "string"
     #description = "Enter name of your account"  
@@ -39,10 +21,3 @@ variable "limitamount" {
     default = "1"
 
 }
-/*
-variable "timeunit" {
-    type = "string"
-    description = "Enter time_unit (eg .  MONTHLY, QUARTERLY, ANNUALLY ) "
-  
-}
-*/
