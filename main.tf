@@ -31,24 +31,19 @@ module "bootstrap" {
 }
 
 
-
-
-# Build the VPC
 resource "aws_vpc" "myvpc" {
-    cidr_block = var.VPC
+    cidr_block = "${var.VPC}"
 
     tags = {
-        Name = "aaaavpc"
+        Name = "${var.stack}-vpc"
     }
 }
-/*
-
 resource "aws_subnet" "public" {
-    count = length(var.public_subnets_cidr)
-    cidr_block = element(var.public_subnets_cidr,count.index)
+    count = "${length(var.public_subnets_cidr)}"
+    cidr_block = "${element(var.public_subnets_cidr,count.index)}"
 
-    vpc_id = aws_vpc.myvpc.id
-    availability_zone = element(var.azs,count.index)
+    vpc_id = "${aws_vpc.myvpc.id}"
+    availability_zone = "${element(var.azs,count.index)}"
 
 
     tags = {
@@ -62,11 +57,11 @@ resource "aws_subnet" "public" {
 
 
 resource "aws_subnet" "private" {
-    count = length(var.private_subnets_cidr)
-    cidr_block = element(var.private_subnets_cidr,count.index)
+    count = "${length(var.private_subnets_cidr)}"
+    cidr_block = "${element(var.private_subnets_cidr,count.index)}"
 
-    vpc_id = aws_vpc.myvpc.id
-    availability_zone = element(var.azs,count.index)
+    vpc_id = "${aws_vpc.myvpc.id}"
+    availability_zone = "${element(var.azs,count.index)}"
 
 
     tags = {
@@ -78,7 +73,7 @@ resource "aws_subnet" "private" {
 #IGW
 
 resource "aws_internet_gateway" "igw" {
-    vpc_id = aws_vpc.myvpc.id
+    vpc_id = "${aws_vpc.myvpc.id}"
 
     tags = {
         "Name" = "${var.stack}-IGW"
@@ -88,11 +83,11 @@ resource "aws_internet_gateway" "igw" {
 
 #public_routetable
 resource "aws_route_table" "publicrt" {
-    vpc_id = aws_vpc.myvpc.id
+    vpc_id = "${aws_vpc.myvpc.id}"
 
      route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.igw.id
+        gateway_id = "${aws_internet_gateway.igw.id}"
     }
 
     tags = {
@@ -106,26 +101,22 @@ resource "aws_route_table" "publicrt" {
 
 #public_rt_subnets_assosiation
 resource "aws_route_table_association" "subnet1assoc" {
-    count = length(var.public_subnets_cidr)
-    subnet_id       = element(aws_subnet.public.*.id, count.index)
-    route_table_id  = aws_route_table.publicrt.id
+    count = "${length(var.public_subnets_cidr)}"
+    subnet_id       = "${element(aws_subnet.public.*.id, count.index)}"
+    route_table_id  = "${aws_route_table.publicrt.id}"
   
 }
 
-
 #  nat gateway
 
-#  nat gateway
-/*
 resource "aws_nat_gateway" "nat" {
-  subnet_id     = element(aws_subnet.private.*.id, count.index)
-  allocation_id = aws_eip.eip.id
+  subnet_id     = "${element(aws_subnet.private.*.id, count.index)}"
+  allocation_id = "${aws_eip.eip.id}"
 
   tags = {
     Name = "${var.stack}-nat_gateway"
   }
 }
-
 
 resource "aws_eip" "eip" {
 
@@ -136,15 +127,15 @@ resource "aws_eip" "eip" {
   }
 }
 
-/*
+
 #private _route_tables
 
 resource "aws_route_table" "privatecrt" {
-  vpc_id = aws_vpc.myvpc.id
+  vpc_id = "${aws_vpc.myvpc.id}"
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat.id
+    gateway_id = "${aws_nat_gateway.nat.id}"
   }
 
   tags = {
@@ -155,18 +146,17 @@ resource "aws_route_table" "privatecrt" {
 
 #private_rt_subnets_assosiation
 resource "aws_route_table_association" "privatesubnet1assoc" {
-    count = length(var.private_subnets_cidr)
-    subnet_id       = element(aws_subnet.private.*.id, count.index)
-    route_table_id  = aws_route_table.privatecrt.id
+    count = "${length(var.private_subnets_cidr)}"
+    subnet_id       = "${element(aws_subnet.private.*.id, count.index)}"
+    route_table_id  = "${aws_route_table.privatecrt.id}"
   
 }
-
 
 
 resource "aws_security_group" "my_sg" {
     name            = "${var.stack}-"
     description     = "${var.stack}-security group "
-    vpc_id          = aws_vpc.myvpc.id
+    vpc_id          = "${aws_vpc.myvpc.id}"
      ingress {
         from_port = 22
         to_port = 22
@@ -196,7 +186,3 @@ resource "aws_security_group" "my_sg" {
         Name = "${var.stack}-security_group"
     }
 }
-
-
-
-*/

@@ -1,4 +1,4 @@
-variable "VPC" {
+/*variable "VPC" {
     type = string
     #description = "Enter vpc cidr range (eg. 10.0.0.0/16 )"
     default = "10.0.0.0/16"
@@ -29,7 +29,7 @@ variable "private_subnets_cidr" {
   }
   */
 
-/*
+
 variable "VPC" {
     type = "string"
     #description = "Enter vpc cidr range (eg. 10.0.0.0/16 )"
@@ -53,7 +53,7 @@ variable "private_subnets_cidr" {
 variable "azs" {
     type = "list"
    # description = "Enter Availability_zone type as list (eg : [us-west-2a,us-west-2b])"
-   default = ["us-west-2a","us-west-2b"]
+    default = ["us-west-2a","us-west-2b"]
   
 }
 /*
