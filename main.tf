@@ -32,14 +32,14 @@ module "bootstrap" {
 
 
 variable "VPC" {
-    type = "string"
+    type = string
     #description = "Enter vpc cidr range (eg. 10.0.0.0/16 )"
     default = "10.0.0.0/16"
 }
 
 # Build the VPC
 resource "aws_vpc" "myvpc" {
-    cidr_block = "var.VPC"
+    cidr_block = var.VPC
 
     tags = {
         Name = "aaaavpc"
