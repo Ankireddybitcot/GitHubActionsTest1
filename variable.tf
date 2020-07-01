@@ -19,3 +19,11 @@ variable stack {
   #description = "Enter name for tags"
   default = "anki"
 }
+variable "private_subnets_cidr" {
+    type = list
+    #description = "Enter private_subnets_cidr type as list (eg: [10.0.2.0/24,10.0.4.0/24] )"
+    default = ["10.0.2.0/24","10.0.4.0/24"]
+    
+  }
+
+
