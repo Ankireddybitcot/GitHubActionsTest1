@@ -30,6 +30,13 @@ module "bootstrap" {
   aws_iam_policy_assume_name  = "GitHubActionsIamPolicyAssume"
 }
 
+
+variable "VPC" {
+    type = "string"
+    #description = "Enter vpc cidr range (eg. 10.0.0.0/16 )"
+    default = "10.0.0.0/16"
+}
+
 # Build the VPC
 resource "aws_vpc" "myvpc" {
     cidr_block = "var.VPC"
