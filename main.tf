@@ -36,7 +36,7 @@ resource "aws_vpc" "vpc" {
   instance_tenancy     = "default"
 
   tags = {
-    Name      = "anki"
+    Name      = "anki2"
     Terraform = "true"
   }
 }
